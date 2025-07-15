@@ -1,0 +1,1873 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>New Zealand Innovation Ecosystem: National Overview 2023–2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --accent-green: #059669;
+            --warm-grey: #6b7280;
+            --light-blue: #dbeafe;
+            --forest-green: #064e3b;
+        }
+        
+        .font-canela { font-family: 'Canela', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 35%, #059669 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .backdrop-blur-sm {
+            backdrop-filter: blur(8px);
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+        }
+        
+        .bento-grid {
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+			grid-template-rows: auto auto;
+			gap: 2rem;
+			min-height: 60vh; /* Changed from height to min-height */
+		}
+        
+        .bento-main {
+            grid-row: 1 / -1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bento-stats {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1px solid #cbd5e1;
+        }
+        
+        .citation-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--primary-blue);
+        }
+        
+        .citation-link:hover {
+            border-bottom: 1px solid var(--primary-blue);
+        }
+        
+        .chart-container {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .sector-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 4px solid var(--accent-green);
+        }
+        
+        .gap-card {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-left: 4px solid #dc2626;
+        }
+        
+        .initiative-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-left: 4px solid var(--primary-blue);
+        }
+        
+        @media (max-width: 1024px) {
+            .toc-fixed {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .toc-fixed.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                height: auto;
+            }
+            
+            .bento-main {
+                grid-row: auto;
+            }
+
+            /* Mermaid controls for mobile */
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* New Mermaid container styles */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 768px) {
+            #hero .relative {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            #hero h1 {
+                font-size: 2.25rem;
+                line-height: 2.5rem;
+            }
+            #hero p.text-xl {
+                font-size: 1.125rem;
+                line-height: 1.75rem;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                height: auto;
+                gap: 1rem;
+            }
+            .bento-main {
+                grid-row: auto;
+                height: 50vh;
+            }
+            #hero .relative.z-10 {
+                padding: 1.5rem;
+            }
+            .bento-stats {
+                grid-template-rows: auto auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #hero h1 {
+                font-size: 1.875rem;
+                line-height: 2.25rem;
+            }
+            #hero .relative.z-10 {
+                padding: 1rem;
+            }
+            .bento-main {
+                height: 40vh;
+            }
+        }
+    </style>
+  </head>
+
+  <body class="font-inter text-gray-900 bg-gray-50">
+    <!-- Table of Contents -->
+    <nav class="toc-fixed" id="toc">
+      <div class="p-6">
+        <h3 class="font-canela text-lg font-bold text-gray-900 mb-4">Contents</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a class="citation-link" href="#hero">Executive Overview</a>
+          </li>
+          <li>
+            <a class="citation-link" href="#national-overview">National Overview</a>
+          </li>
+          <li>
+            <a class="citation-link" href="#funders">Key Funders</a>
+          </li>
+          <li>
+            <a class="citation-link" href="#sectoral-strengths">Top 5 Sectoral Strengths</a>
+          </li>
+          <li>
+            <a class="citation-link" href="#gaps-barriers">Key Gaps &amp; Barriers</a>
+          </li>
+          <li>
+            <a class="citation-link" href="#rising-initiatives">Rising Initiatives</a>
+          </li>
+          <li>
+            <a class="citation-link" href="#comparisons">Year-over-Year Analysis</a>
+          </li>
+          <li>
+            <a class="citation-link" href="#visual-summary">Visual Summary</a>
+          </li>
+          <li>
+            <a class="citation-link" href="#conclusion">Strategic Outlook</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="lg:hidden fixed top-4 left-4 z-50 bg-white p-2 rounded-lg shadow-lg" id="mobile-menu-toggle">
+      <i class="fas fa-bars text-gray-700"></i>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-gradient text-white" id="hero">
+        <div class="bento-grid max-w-7xl mx-auto p-8">
+          <!-- Main Hero Content -->
+          <div class="bento-main relative rounded-2xl overflow-hidden">
+            <img alt="New Zealand technology innovation landscape" class="w-full h-full object-cover opacity-30" src="https://kimi-web-img.moonshot.cn/img/cfotech.co.nz/e2f0a556225f90993e7d6c2fd946ccbaa6bbc633.webp" size="large" aspect="wide" style="photo" query="New Zealand innovation landscape" referrerpolicy="no-referrer" data-modified="1" data-score="11599.00"/>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+            <div class="absolute inset-0 flex items-center p-12">
+              <div class="relative z-10">
+                <h1 class="font-canela text-5xl lg:text-6xl font-bold mb-6 text-shadow italic leading-tight">
+                  New Zealand Innovation Ecosystem
+                </h1>
+                <p class="text-xl lg:text-2xl mb-8 text-shadow opacity-90 font-light">
+                  National Overview 2023–2025
+                </p>
+                <div class="flex flex-wrap gap-4 text-sm">
+                  <span class="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">2,400 Active Startups</span>
+                  <span class="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">NZD 2B+ Investment</span>
+                  <span class="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">40,000+ Jobs Created</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="bento-stats">
+            <div class="stat-card rounded-xl p-6">
+              <h3 class="font-canela text-2xl font-bold text-gray-900 mb-2">Sector Leadership</h3>
+              <p class="text-gray-700 text-sm leading-relaxed">
+                Dominance in AI &amp; Digital Tech, Agritech, SaaS, Fintech, and Healthtech sectors driving economic transformation
+              </p>
+            </div>
+            <div class="stat-card rounded-xl p-6">
+              <h3 class="font-canela text-2xl font-bold text-gray-900 mb-2">Innovation Momentum</h3>
+              <p class="text-gray-700 text-sm leading-relaxed">
+                67% of companies already using AI technologies, with NZD 236M invested in 72 groundbreaking projects
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- National Overview -->
+      <section class="py-16 px-8" id="national-overview">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-canela text-4xl font-bold text-gray-900 mb-8">National Overview: A Thriving Ecosystem</h2>
+
+          <div class="grid lg:grid-cols-2 gap-12 mb-12">
+            <div>
+              <h3 class="font-canela text-2xl font-semibold text-gray-900 mb-6">Current State &amp; Economic Impact</h3>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                New Zealand&#39;s technology startup ecosystem demonstrates robust health with approximately <strong>2,400 active startups</strong> as of 2025. The sector attracted over <strong>NZD 2 billion in investment during 2024</strong> and catalyzed the creation of <strong>over 40,000 new jobs in 2023</strong>.
+                <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+              </p>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                The tech sector&#39;s contribution to GDP stands at <strong>NZD 23 billion</strong>, surpassing many traditional industries. Each new tech job creates an additional <strong>4.8 jobs elsewhere in the economy</strong>, demonstrating significant multiplier effects.
+                <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                Looking forward, <strong>NZD 236 million is being invested in 72 groundbreaking projects</strong> over the next five years, focusing on quantum computing, environmental technology, and digital infrastructure.
+                <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+              </p>
+            </div>
+
+            <div>
+              <h3 class="font-canela text-2xl font-semibold text-gray-900 mb-6">Geographic Innovation Hubs</h3>
+              <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-semibold text-gray-900">Auckland</span>
+                  <span class="text-2xl font-bold text-blue-600">58%</span>
+                </div>
+                <p class="text-gray-700 text-sm mb-4">
+                  Primary innovation hub accounting for 58% of all startup operations nationwide.
+                  <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                </p>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span>Wellington</span>
+                    <span class="font-semibold">Key Node</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Christchurch</span>
+                    <span class="font-semibold">Key Node</span>
+                  </div>
+                </div>
+                <p class="text-gray-600 text-xs mt-4">
+                  These three cities account for 81% of total funding deals in FY 2024.
+                  <a class="citation-link" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[3]</a>
+                </p>
+              </div>
+
+              <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+                <h4 class="font-semibold text-blue-900 mb-2">City and Regional Deals Initiative</h4>
+                <p class="text-blue-800 text-sm">
+                  New 2024 initiative to align central and local government investment priorities, with MOUs signed for Auckland, Otago/Central Lakes, and Western Bay of Plenty.
+                  <a class="citation-link" href="https://startupgenome.com/contents/report/gser-2025_4786.pdf">[2]</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Funders -->
+      <section class="py-16 px-8 bg-gray-50" id="funders">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-canela text-4xl font-bold text-gray-900 mb-12">Key Funders: Public and Private Investment</h2>
+
+          <div class="grid lg:grid-cols-2 gap-12">
+            <!-- Public Funders -->
+            <div>
+              <h3 class="font-canela text-2xl font-semibold text-gray-900 mb-6">Public Funding Agencies</h3>
+              <p class="text-gray-700 leading-relaxed mb-8">
+                The New Zealand government provides foundational support through ministries and agencies, administering programs that stimulate R&amp;D and commercialization activities across various sectors.
+              </p>
+
+              <div class="space-y-6">
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                  <h4 class="font-semibold text-gray-900 mb-2">Ministry of Business, Innovation &amp; Employment (MBIE)</h4>
+                  <p class="text-gray-700 text-sm mb-3">
+                    Administers major funding programs including the Endeavour Fund, Catalyst Fund, and R&amp;D Tax Incentive.
+                    <a class="citation-link" href="https://www.mbie.govt.nz/about/open-government-and-official-information/release-of-information/lists-of-ministerial-documents-by-portfolio/science-innovation-and-technology">[5]</a>
+                  </p>
+                  <div class="bg-blue-50 p-3 rounded-lg">
+                    <p class="text-blue-800 text-xs">
+                      <strong>2025 Smart Ideas:</strong> $17M per year with contracts starting Oct 1, 2025
+                      <a class="citation-link" href="https://www.mbie.govt.nz/about/open-government-and-official-information/release-of-information/lists-of-ministerial-documents-by-portfolio/science-innovation-and-technology">[5]</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                  <h4 class="font-semibold text-gray-900 mb-2">Callaghan Innovation</h4>
+                  <p class="text-gray-700 text-sm mb-3">
+                    Focuses on accelerating commercialization through R&amp;D grants, technical expertise, and business support.
+                    <a class="citation-link" href="https://www.callaghaninnovation.govt.nz/assets/documents/Callaghan-Innovation-Annual-Report-2023-24.pdf">[10]</a>
+                  </p>
+                  <p class="text-gray-600 text-xs">
+                    <em>Note: Core functions transitioning to MBIE and PROs following Budget 2025 announcement</em>
+                    <a class="citation-link" href="https://www.mbie.govt.nz/business-and-employment/economic-growth/long-term-insights-briefings/our-long-term-insights-briefing-on-the-future-of-business-for-aotearoa-new-zealand">[9]</a>
+                  </p>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                  <h4 class="font-semibold text-gray-900 mb-2">NZ Growth Capital</h4>
+                  <p class="text-gray-700 text-sm">
+                    Provides equity investment through Elevate NZ Venture Fund, Aspire NZ Seed Fund, and legacy NZVIF programs.
+                    <a class="citation-link" href="https://www.mbie.govt.nz/science-and-technology/science-and-innovation/funding-information-and-opportunities/investment-funds">[12]</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Private Funders -->
+            <div>
+              <h3 class="font-canela text-2xl font-semibold text-gray-900 mb-6">Private Investment Landscape</h3>
+              <p class="text-gray-700 leading-relaxed mb-8">
+                The private funding ecosystem features growing VC firms, angel networks, and corporate venture arms. In 2025, startups attracted over <strong>NZD 100 million in pre-seed funding</strong>, indicating strong early-stage interest.
+                <a class="citation-link" href="https://www.papermark.com/blog/pre-seed-investors-new-zealand">[8]</a>
+              </p>
+
+              <div class="space-y-6">
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                  <h4 class="font-semibold text-gray-900 mb-2">Icehouse Ventures</h4>
+                  <p class="text-gray-700 text-sm mb-3">
+                    Leading VC investing across software, SaaS, AI, and healthcare sectors.
+                    <a class="citation-link" href="https://www.papermark.com/blog/pre-seed-investors-new-zealand">[8]</a>
+                  </p>
+                  <span class="text-xs bg-gray-100 px-2 py-1 rounded">Multi-sector Focus</span>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                  <h4 class="font-semibold text-gray-900 mb-2">Hillfarrance Venture Capital</h4>
+                  <p class="text-gray-700 text-sm mb-3">
+                    Specialized in early-stage technology startup investments.
+                    <a class="citation-link" href="https://www.papermark.com/blog/pre-seed-investors-new-zealand">[8]</a>
+                  </p>
+                  <span class="text-xs bg-blue-100 px-2 py-1 rounded">Early-stage Tech</span>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                  <h4 class="font-semibold text-gray-900 mb-2">Ice Angels</h4>
+                  <p class="text-gray-700 text-sm mb-3">
+                    Prominent angel investor network backing innovative businesses across New Zealand.
+                    <a class="citation-link" href="https://www.nzte.govt.nz/page/tech-and-innovation">[15]</a>
+                  </p>
+                  <span class="text-xs bg-green-100 px-2 py-1 rounded">Angel Network</span>
+                </div>
+              </div>
+
+              <div class="mt-8 bg-green-50 border border-green-200 rounded-xl p-6">
+                <h4 class="font-semibold text-green-900 mb-2">Investment Trend</h4>
+                <p class="text-green-800 text-sm">
+                  Venture capital funds now comprise <strong>58% of total deals in FY 2024</strong>, while angel investors account for 37%, indicating a maturing ecosystem with increasing institutional participation.
+                  <a class="citation-link" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[3]</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sectoral Strengths -->
+      <section class="py-16 px-8" id="sectoral-strengths">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-canela text-4xl font-bold text-gray-900 mb-12">Top 5 Sectoral Strengths</h2>
+
+          <div class="space-y-12">
+            <!-- AI &amp; Digital Tech -->
+            <div class="sector-card rounded-2xl p-8">
+              <div class="flex items-center mb-6">
+                <i class="fas fa-robot text-3xl text-green-600 mr-4"></i>
+                <div>
+                  <h3 class="font-canela text-2xl font-bold text-gray-900">Artificial Intelligence &amp; Digital Technologies</h3>
+                  <p class="text-gray-700">Frontier technology leadership with government strategy support</p>
+                </div>
+              </div>
+
+              <div class="grid lg:grid-cols-2 gap-8">
+                <div>
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    New Zealand demonstrates significant AI capabilities with companies like <strong>Soul Machines</strong> revolutionizing digital interaction through AI-powered digital humans, and <strong>Myma.ai</strong> providing smart ordering solutions for hospitality.
+                    <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                  </p>
+
+                  <div class="bg-white rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-900 mb-4">National AI Strategy 2025</h4>
+                    <p class="text-gray-700 text-sm mb-3">
+                      Government announced its first-ever national AI strategy in July 2025, signaling coordinated approach to harness AI&#39;s potential.
+                      <a class="citation-link" href="https://opengovasia.com/new-zealands-first-national-ai-strategy-to-foster-growth/">[17]</a>
+                    </p>
+                    <div class="flex items-center text-green-600 text-sm">
+                      <i class="fas fa-chart-line mr-2"></i>
+                      <span>AI projected to add NZD 76B to GDP by 2038</span>
+                      <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Soul Machines</h5>
+                    <p class="text-gray-700 text-sm">AI-powered digital humans for customer experience and education</p>
+                    <a class="citation-link text-xs" href="https://www.nzte.govt.nz/page/tech-and-innovation">[19]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Myma.ai</h5>
+                    <p class="text-gray-700 text-sm">AI-driven solutions for hospitality industry optimization</p>
+                    <a class="citation-link text-xs" href="https://www.dlapiper.com/en/insights/publications/2025/07/quick-on-the-uptake-new-zealand-s-new-strategic-approach-to-artificial-intelligence">[20]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Quantum Technologies Aotearoa</h5>
+                    <p class="text-gray-700 text-sm">MBIE-funded project connecting NZ quantum expertise internationally</p>
+                    <a class="citation-link text-xs" href="https://www.russellmcveagh.com/insights-news/energy-sector-in-new-zealand-reviewing-2024-and-looking-to-2025/">[16]</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Agritech &amp; Cleantech -->
+            <div class="sector-card rounded-2xl p-8">
+              <div class="flex items-center mb-6">
+                <i class="fas fa-leaf text-3xl text-green-600 mr-4"></i>
+                <div>
+                  <h3 class="font-canela text-2xl font-bold text-gray-900">Agritech &amp; Cleantech</h3>
+                  <p class="text-gray-700">Leveraging agricultural heritage for sustainable innovation</p>
+                </div>
+              </div>
+
+              <div class="grid lg:grid-cols-2 gap-8">
+                <div>
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    New Zealand&#39;s agricultural strength drives Agritech innovation with companies like <strong>Halter</strong> developing smart cow collars using AI and GPS, and <strong>BioFab</strong> creating sustainable mycelium packaging alternatives.
+                    <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                  </p>
+
+                  <div class="bg-white rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Government Support</h4>
+                    <p class="text-gray-700 text-sm">
+                      &#34;Going for Growth&#34; strategy emphasizes unlocking primary industries potential through innovation, including recent legislative changes to enable gene technology.
+                      <a class="citation-link" href="https://www.beehive.govt.nz/release/growth-promoting-science-and-innovation-backed">[22]</a>
+                    </p>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Halter</h5>
+                    <p class="text-gray-700 text-sm">Smart solar-powered cow collars for virtual fencing and health monitoring</p>
+                    <a class="citation-link text-xs" href="https://www.nzte.govt.nz/page/tech-and-innovation">[19]</a>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">BioFab</h5>
+                    <p class="text-gray-700 text-sm">Biodegradable packaging materials from renewable resources</p>
+                    <a class="citation-link text-xs" href="https://www.dlapiper.com/en/insights/publications/2025/07/quick-on-the-uptake-new-zealand-s-new-strategic-approach-to-artificial-intelligence">[20]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">KiwiFil</h5>
+                    <p class="text-gray-700 text-sm">Recycled plastic filaments for 3D printing circular economy</p>
+                    <a class="citation-link text-xs" href="https://www.mbie.govt.nz/science-and-technology/science-and-innovation/funding-information-and-opportunities/investment-funds/endeavour-fund/currently-funded-smart-ideas">[21]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Hortworx</h5>
+                    <p class="text-gray-700 text-sm">Harvest automation robots for agricultural efficiency</p>
+                    <a class="citation-link text-xs" href="https://www.mbie.govt.nz/science-and-technology/science-and-innovation/funding-information-and-opportunities/investment-funds/endeavour-fund/currently-funded-smart-ideas">[21]</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SaaS &amp; Software -->
+            <div class="sector-card rounded-2xl p-8">
+              <div class="flex items-center mb-6">
+                <i class="fas fa-cloud text-3xl text-green-600 mr-4"></i>
+                <div>
+                  <h3 class="font-canela text-2xl font-bold text-gray-900">Software as a Service &amp; Software</h3>
+                  <p class="text-gray-700">Global SaaS leadership with scalable export success</p>
+                </div>
+              </div>
+
+              <div class="grid lg:grid-cols-2 gap-8">
+                <div>
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    The SaaS sector represents a cornerstone of New Zealand&#39;s innovation economy with successful companies like <strong>Vend</strong> (retail technology platform) and <strong>Timble</strong> (automated scheduling solutions) achieving global recognition.
+                    <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                  </p>
+
+                  <div class="bg-white rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Global Recognition</h4>
+                    <p class="text-gray-700 text-sm mb-3">
+                      Software &amp; Data ranks <strong>#26 worldwide</strong> with around 200 startups in this category.
+                      <a class="citation-link" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                    </p>
+                    <p class="text-gray-700 text-sm">
+                      The Digital Technologies ITP specifically identified SaaS as a key sub-sector for growing export success.
+                      <a class="citation-link" href="https://www.mbie.govt.nz/dmsdocument/30888-new-zealands-strategy-for-artificial-intelligence-investing-with-confidence">[18]</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Vend (Lightspeed)</h5>
+                    <p class="text-gray-700 text-sm">Cloud-based POS and retail management software platform</p>
+                    <a class="citation-link text-xs" href="https://www.nzte.govt.nz/page/tech-and-innovation">[19]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Timble (Timely)</h5>
+                    <p class="text-gray-700 text-sm">Cloud-based employee scheduling and workforce management</p>
+                    <a class="citation-link text-xs" href="https://www.dlapiper.com/en/insights/publications/2025/07/quick-on-the-uptake-new-zealand-s-new-strategic-approach-to-artificial-intelligence">[20]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Portainer</h5>
+                    <p class="text-gray-700 text-sm">IT infrastructure management software solutions</p>
+                    <a class="citation-link text-xs" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fintech -->
+            <div class="sector-card rounded-2xl p-8">
+              <div class="flex items-center mb-6">
+                <i class="fas fa-coins text-3xl text-green-600 mr-4"></i>
+                <div>
+                  <h3 class="font-canela text-2xl font-bold text-gray-900">Financial Technology</h3>
+                  <p class="text-gray-700">Emerging fintech ecosystem with strong support infrastructure</p>
+                </div>
+              </div>
+
+              <div class="grid lg:grid-cols-2 gap-8">
+                <div>
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    New Zealand&#39;s Fintech sector is rapidly emerging with <strong>Creative HQ&#39;s Fintech Lab</strong> nurturing startups and the sector ranking <strong>#36 worldwide with 48 identified startups</strong>.
+                    <a class="citation-link" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                  </p>
+
+                  <div class="bg-white rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Key Players</h4>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                      <li><strong>MEGA Privacy:</strong> Secure cloud storage expanding into privacy services</li>
+                      <li><strong>Carepatron:</strong> Workflow management for healthcare finance teams</li>
+                      <li><strong>Easy Month End:</strong> Automated accounting workflow software</li>
+                    </ul>
+                    <a class="citation-link text-xs" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Easy Month End</h5>
+                    <p class="text-gray-700 text-sm">Automated accounting workflow software for month-end processes</p>
+                    <a class="citation-link text-xs" href="https://www.dlapiper.com/en/insights/publications/2025/07/quick-on-the-uptake-new-zealand-s-new-strategic-approach-to-artificial-intelligence">[20]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">MEGA Privacy</h5>
+                    <p class="text-gray-700 text-sm">End-to-end encrypted cloud storage and communication services</p>
+                    <a class="citation-link text-xs" href="https://www.nzte.govt.nz/page/tech-and-innovation">[19]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Carepatron</h5>
+                    <p class="text-gray-700 text-sm">Practice management software for health professionals</p>
+                    <a class="citation-link text-xs" href="https://www.nzte.govt.nz/page/tech-and-innovation">[19]</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Healthtech &amp; Medtech -->
+            <div class="sector-card rounded-2xl p-8">
+              <div class="flex items-center mb-6">
+                <i class="fas fa-heartbeat text-3xl text-green-600 mr-4"></i>
+                <div>
+                  <h3 class="font-canela text-2xl font-bold text-gray-900">Healthtech &amp; Medtech</h3>
+                  <p class="text-gray-700">Growing momentum in digital health and medical devices</p>
+                </div>
+              </div>
+
+              <div class="grid lg:grid-cols-2 gap-8">
+                <div>
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    Healthtech is gaining momentum with the sector ranking <strong>#32 globally with 41 identified startups</strong>. New Zealand historically accounted for <strong>2.5% of global MedTech R&amp;D in 2019</strong>.
+                    <a class="citation-link" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                    <a class="citation-link" href="https://www.russellmcveagh.com/insights-news/energy-sector-in-new-zealand-reviewing-2024-and-looking-to-2025/">[16]</a>
+                  </p>
+
+                  <div class="bg-white rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Government Support</h4>
+                    <p class="text-gray-700 text-sm">
+                      Restructuring of science system includes plans for new Public Research Organisation focused on Health and Forensic Science Services.
+                      <a class="citation-link" href="https://www.mbie.govt.nz/business-and-employment/economic-growth/long-term-insights-briefings/our-long-term-insights-briefing-on-the-future-of-business-for-aotearoa-new-zealand">[9]</a>
+                    </p>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Aroa Biosurgery</h5>
+                    <p class="text-gray-700 text-sm">Soft tissue repair products using ECM technology</p>
+                    <a class="citation-link text-xs" href="https://figure.nz/chart/8Z472S7ZCUi6oeff">[25]</a>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Kitea Health</h5>
+                    <p class="text-gray-700 text-sm">Digital health solutions for healthcare delivery improvement</p>
+                    <a class="citation-link text-xs" href="https://figure.nz/chart/8Z472S7ZCUi6oeff">[25]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Rex Bionics</h5>
+                    <p class="text-gray-700 text-sm">Robotic exoskeletons for mobility assistance</p>
+                    <a class="citation-link text-xs" href="https://figure.nz/chart/8Z472S7ZCUi6oeff">[25]</a>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4">
+                    <h5 class="font-semibold text-gray-900 mb-2">Calmly</h5>
+                    <p class="text-gray-700 text-sm">Breathing assistance device with advanced sensor monitoring</p>
+                    <a class="citation-link text-xs" href="https://www.mbie.govt.nz/science-and-technology/science-and-innovation/funding-information-and-opportunities/investment-funds/endeavour-fund/currently-funded-smart-ideas">[21]</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gaps and Barriers -->
+      <section class="py-16 px-8 bg-red-50" id="gaps-barriers">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-canela text-4xl font-bold text-gray-900 mb-12">Critical Gaps &amp; Barriers</h2>
+
+          <div class="space-y-8">
+            <!-- R&amp;D Underinvestment -->
+            <div class="gap-card rounded-2xl p-8">
+              <div class="flex items-start">
+                <i class="fas fa-chart-line-down text-3xl text-red-600 mr-6 mt-1"></i>
+                <div class="flex-1">
+                  <h3 class="font-canela text-2xl font-bold text-gray-900 mb-4">Underinvestment in Research &amp; Development</h3>
+
+                  <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                      <p class="text-gray-700 leading-relaxed mb-6">
+                        New Zealand invests approximately <strong>1.47% of GDP in R&amp;D</strong>, substantially below the <strong>OECD average of 2.7%</strong>. Leading innovative nations like Germany, Sweden, and South Korea invest over 3% of GDP.
+                        <a class="citation-link" href="https://www.globalassetsolutions.com/australia-vs-new-zealand">[26]</a>
+                      </p>
+
+                      <div class="bg-white rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Impact on Productivity</h4>
+                        <p class="text-gray-700 text-sm">
+                          Treasury report highlights low R&amp;D investment as possible reason for poor productivity performance.
+                          <a class="citation-link" href="https://www.wipo.int/gii-ranking/en/new-zealand">[27]</a>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6">
+                      <h4 class="font-semibold text-gray-900 mb-4">R&amp;D Investment Comparison</h4>
+                      <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                          <span class="text-sm">New Zealand</span>
+                          <div class="flex items-center">
+                            <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                              <div class="bg-red-500 h-2 rounded-full" style="width: 49%"></div>
+                            </div>
+                            <span class="text-sm font-semibold">1.47%</span>
+                          </div>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                          <span class="text-sm">OECD Average</span>
+                          <div class="flex items-center">
+                            <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                              <div class="bg-orange-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                            <span class="text-sm font-semibold">2.7%</span>
+                          </div>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                          <span class="text-sm">Leading Nations</span>
+                          <div class="flex items-center">
+                            <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                              <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-sm font-semibold">&gt;3%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Series A/B Gap -->
+            <div class="gap-card rounded-2xl p-8">
+              <div class="flex items-start">
+                <i class="fas fa-money-bill-wave text-3xl text-red-600 mr-6 mt-1"></i>
+                <div class="flex-1">
+                  <h3 class="font-canela text-2xl font-bold text-gray-900 mb-4">Access to Capital: The Series A/B Gap</h3>
+
+                  <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                      <p class="text-gray-700 leading-relaxed mb-6">
+                        While pre-seed funding reached over <strong>NZD 100 million in 2025</strong>, access to sufficient capital for <strong>Series A and B funding rounds</strong> remains challenging, creating a &#34;valley of death&#34; for scaling ventures.
+                        <a class="citation-link" href="https://www.papermark.com/blog/pre-seed-investors-new-zealand">[8]</a>
+                      </p>
+
+                      <div class="bg-white rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Systemic Challenges</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                          <li>• Conservative banking sector approach to risk</li>
+                          <li>• Relatively small domestic market size</li>
+                          <li>• Difficulty attracting larger scaling investments</li>
+                          <li>• Limited risk-taking entrepreneurship culture</li>
+                        </ul>
+                        <a class="citation-link text-xs" href="https://news.microsoft.com/source/asia/features/nz-new-ai-economy-report-2025/">[28]</a>
+                      </div>
+                    </div>
+
+                    <div class="space-y-6">
+                      <div class="bg-white rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">SME Cash Flow Reality</h4>
+                        <p class="text-gray-700 text-sm mb-3">
+                          Xero research shows average NZ SME experiences negative cash flow for <strong>4 months per year</strong>, with 17% struggling for over 6 months.
+                          <a class="citation-link" href="https://www.callaghaninnovation.govt.nz/assets/documents/NZ_Climate_Tech_For_The_World_report.pdf">[29]</a>
+                        </p>
+                      </div>
+
+                      <div class="bg-white rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Government Response</h4>
+                        <p class="text-gray-700 text-sm">
+                          NZGCP&#39;s Elevate fund aims to address gap by investing NZ$196M into eight Kiwi VCs, targeting Series A and B funding gaps.
+                          <a class="citation-link" href="https://www.callaghaninnovation.govt.nz/assets/documents/Callaghan-Innovation-Annual-Report-2023-24.pdf">[30]</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Talent Shortage -->
+            <div class="gap-card rounded-2xl p-8">
+              <div class="flex items-start">
+                <i class="fas fa-user-graduate text-3xl text-red-600 mr-6 mt-1"></i>
+                <div class="flex-1">
+                  <h3 class="font-canela text-2xl font-bold text-gray-900 mb-4">Talent Shortage: Skills Gap and Brain Drain</h3>
+
+                  <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                      <p class="text-gray-700 leading-relaxed mb-6">
+                        Persistent shortage of skilled talent in specialized tech roles, exacerbated by <strong>&#34;brain drain&#34;</strong> where skilled professionals move overseas, often to Australia for higher wages and broader opportunities.
+                        <a class="citation-link" href="https://www.callaghaninnovation.govt.nz/assets/documents/NZ_Climate_Tech_For_The_World_report.pdf">[29]</a>
+                      </p>
+
+                      <div class="bg-white rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Government Initiatives</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                          <li>• Digital Technologies ITP: &#34;enhancing skills and talent pipeline&#34;</li>
+                          <li>• Draft RSI strategy: making NZ talent magnet</li>
+                          <li>• Skilled workforce target: 70% (from current 67%)</li>
+                        </ul>
+                        <a class="citation-link text-xs" href="https://www.mbie.govt.nz/dmsdocument/30888-new-zealands-strategy-for-artificial-intelligence-investing-with-confidence">[18]</a>
+                        <a class="citation-link text-xs" href="https://www.beehive.govt.nz/release/growth-promoting-science-and-innovation-backed">[22]</a>
+                      </div>
+                    </div>
+
+                    <div class="space-y-6">
+                      <div class="bg-white rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Current Reality</h4>
+                        <div class="space-y-4">
+                          <div>
+                            <div class="flex justify-between mb-2">
+                              <span class="text-sm">Current Skilled Workforce (15-64)</span>
+                              <span class="text-sm font-semibold">67%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                              <div class="bg-yellow-500 h-2 rounded-full" style="width: 67%"></div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <div class="flex justify-between mb-2">
+                              <span class="text-sm">2025 Target</span>
+                              <span class="text-sm font-semibold">70%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                              <div class="bg-green-500 h-2 rounded-full" style="width: 70%"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <p class="text-gray-600 text-xs mt-3">3 percentage point gap represents significant talent challenge</p>
+                      </div>
+
+                      <div class="bg-white rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Industry Perspective</h4>
+                        <p class="text-gray-700 text-sm">
+                          Mint Design 2023 report highlighted skills shortage as key challenge, likely to persist despite ongoing initiatives.
+                          <a class="citation-link" href="https://www.callaghaninnovation.govt.nz/assets/documents/NZ_Climate_Tech_For_The_World_report.pdf">[29]</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rising Initiatives -->
+      <section class="py-16 px-8" id="rising-initiatives">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-canela text-4xl font-bold text-gray-900 mb-12">Rising Initiatives to Watch</h2>
+
+          <div class="space-y-8">
+            <!-- National AI Strategy -->
+            <div class="initiative-card rounded-2xl p-8">
+              <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                  <div class="flex items-center mb-6">
+                    <i class="fas fa-brain text-3xl text-blue-600 mr-4"></i>
+                    <div>
+                      <h3 class="font-canela text-2xl font-bold text-gray-900">National AI Strategy 2025</h3>
+                      <p class="text-gray-700">Comprehensive framework for AI development and adoption</p>
+                    </div>
+                  </div>
+
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    Launched in July 2025, New Zealand&#39;s first-ever national AI strategy provides cohesive framework for AI development, adoption, and governance across economic sectors and society.
+                    <a class="citation-link" href="https://opengovasia.com/new-zealands-first-national-ai-strategy-to-foster-growth/">[17]</a>
+                  </p>
+
+                  <div class="bg-white rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Strategic Focus Areas</h4>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                      <li>• AI research and development investment</li>
+                      <li>• Talent development and attraction programs</li>
+                      <li>• Ethical considerations and data privacy frameworks</li>
+                      <li>• Business and public sector AI adoption promotion</li>
+                    </ul>
+                  </div>
+
+                  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-blue-900 mb-2">Building on Existing Strengths</h4>
+                    <p class="text-blue-800 text-sm">
+                      Strategy builds upon AI leadership from companies like Soul Machines and UneeQ, aligning with Digital Technologies ITP goals.
+                      <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                      <a class="citation-link" href="https://www.mbie.govt.nz/dmsdocument/30888-new-zealands-strategy-for-artificial-intelligence-investing-with-confidence">[18]</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="space-y-6">
+                  <div class="bg-white rounded-lg p-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Expected Impact</h4>
+                    <div class="space-y-4">
+                      <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-1">NZD 76B</div>
+                        <div class="text-sm text-gray-600">Projected AI contribution to GDP by 2038</div>
+                      </div>
+                      <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-1">67%</div>
+                        <div class="text-sm text-gray-600">Companies already using AI technologies</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Key Timeline</h4>
+                    <div class="space-y-3 text-sm">
+                      <div class="flex justify-between">
+                        <span>Strategy Launch</span>
+                        <span class="font-semibold">July 2025</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Implementation</span>
+                        <span class="font-semibold">2025-2026</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Full Deployment</span>
+                        <span class="font-semibold">2027+</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- City and Regional Deals -->
+            <div class="initiative-card rounded-2xl p-8">
+              <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                  <div class="flex items-center mb-6">
+                    <i class="fas fa-city text-3xl text-blue-600 mr-4"></i>
+                    <div>
+                      <h3 class="font-canela text-2xl font-bold text-gray-900">City and Regional Deals (CRDs)</h3>
+                      <p class="text-gray-700">Place-based investment for regional innovation growth</p>
+                    </div>
+                  </div>
+
+                  <p class="text-gray-700 leading-relaxed mb-6">
+                    Introduced in 2024, CRDs represent innovative approach to place-based investment, bringing central and local government into <strong>10-year alignment around specific investment priorities</strong> for cities and regions.
+                    <a class="citation-link" href="https://startupgenome.com/contents/report/gser-2025_4786.pdf">[2]</a>
+                  </p>
+
+                  <div class="bg-white rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Initial Deals Signed</h4>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                      <div>
+                        <div class="bg-blue-100 rounded-lg p-3">
+                          <div class="font-semibold text-blue-900">Auckland</div>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="bg-green-100 rounded-lg p-3">
+                          <div class="font-semibold text-green-900">Otago/Central Lakes</div>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="bg-purple-100 rounded-lg p-3">
+                          <div class="font-semibold text-purple-900">Western Bay of Plenty</div>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="citation-link text-xs" href="https://startupgenome.com/contents/report/gser-2025_4786.pdf">[2]</a>
+                  </div>
+
+                  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-blue-900 mb-2">Addressing Structural Gaps</h4>
+                    <p class="text-blue-800 text-sm">
+                      CRDs address absence of formal state/provincial government tier, which in other countries develops regional innovation clusters, by fostering central-local collaboration.
+                      <a class="citation-link" href="https://startupgenome.com/contents/report/gser-2025_4786.pdf">[2]</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="space-y-6">
+                  <div class="bg-white rounded-lg p-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Deal Components</h4>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                      <li>• Infrastructure co-investment</li>
+                      <li>• Research and workforce policy alignment</li>
+                      <li>• Innovation precinct stewardship</li>
+                      <li>• Long-term strategic planning</li>
+                      <li>• Shared budgets and resources</li>
+                    </ul>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">Success Factors</h4>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                      <li>• Effective partnership establishment</li>
+                      <li>• Embedded long-term commitment</li>
+                      <li>• Sustained transformation beyond funding cycles</li>
+                      <li>• Political cycle independence</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparisons -->
+      <section class="py-16 px-8 bg-gray-50" id="comparisons">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-canela text-4xl font-bold text-gray-900 mb-12">Year-over-Year Analysis</h2>
+
+          <div class="grid lg:grid-cols-2 gap-12">
+            <!-- Funding Growth -->
+            <div>
+              <h3 class="font-canela text-2xl font-semibold text-gray-900 mb-8">Startup Funding Growth</h3>
+
+              <div class="bg-white rounded-xl p-8 border border-gray-200">
+                <div class="space-y-6">
+                  <div class="flex justify-between items-center p-4 bg-green-50 rounded-lg">
+                    <span class="font-semibold">2023-2024 Growth</span>
+                    <span class="text-2xl font-bold text-green-600">+39.13%</span>
+                    <a class="citation-link text-xs" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                  </div>
+
+                  <div class="flex justify-between items-center p-4 bg-blue-50 rounded-lg">
+                    <span class="font-semibold">Total Funding Since 2017</span>
+                    <span class="text-2xl font-bold text-blue-600">US$3.20B+</span>
+                    <a class="citation-link text-xs" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                  </div>
+
+                  <div class="flex justify-between items-center p-4 bg-purple-50 rounded-lg">
+                    <span class="font-semibold">Average Deal Size 2024</span>
+                    <span class="text-2xl font-bold text-purple-600">US$7.63M</span>
+                    <a class="citation-link text-xs" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                  </div>
+
+                  <div class="flex justify-between items-center p-4 bg-orange-50 rounded-lg">
+                    <span class="font-semibold">Deal Count Change</span>
+                    <span class="text-2xl font-bold text-orange-600">-10.64%</span>
+                    <a class="citation-link text-xs" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                  </div>
+                </div>
+
+                <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                  <h4 class="font-semibold text-gray-900 mb-2">Key Insight</h4>
+                  <p class="text-gray-700 text-sm">
+                    While deal count decreased, funding increased significantly, indicating larger investments in fewer, high-potential startups - a sign of maturing market.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- DeepTech Emergence -->
+            <div>
+              <h3 class="font-canela text-2xl font-semibold text-gray-900 mb-8">DeepTech &amp; Industry 4.0 Emergence</h3>
+
+              <div class="bg-white rounded-xl p-8 border border-gray-200">
+                <div class="text-center mb-8">
+                  <div class="text-5xl font-bold text-indigo-600 mb-2">38%</div>
+                  <div class="text-gray-700">of total capital funding in 2023 went to DeepTech</div>
+                  <a class="citation-link text-xs" href="https://techweek.co.nz/news/auckland-innovation-forum-building-a-connected-ecosystem-to-drive-tech-growth">[31]</a>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="bg-indigo-50 rounded-lg p-4">
+                    <h4 class="font-semibold text-indigo-900 mb-2">DeepTech Definition</h4>
+                    <p class="text-indigo-800 text-sm">
+                      IP-rich engineering or science-based solutions requiring significant R&amp;D investment
+                    </p>
+                  </div>
+
+                  <div class="bg-white border border-gray-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-gray-900 mb-3">Leading Sub-sectors</h4>
+                    <div class="space-y-2">
+                      <div class="flex justify-between">
+                        <span class="text-sm">HealthTech</span>
+                        <span class="text-sm font-semibold">Prominent</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-sm">CleanTech</span>
+                        <span class="text-sm font-semibold">Prominent</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-sm">AgTech</span>
+                        <span class="text-sm font-semibold">Prominent</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-white border border-gray-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-gray-900 mb-3">Endeavour Fund Examples</h4>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                      <li>• AI + Additive Manufacturing for Biomimetic Building Façades</li>
+                      <li>• On-chip microwave circulator for quantum computing</li>
+                    </ul>
+                    <a class="citation-link text-xs" href="https://www.mbie.govt.nz/science-and-technology/science-and-innovation/funding-information-and-opportunities/investment-funds/endeavour-fund/currently-funded-smart-ideas">[5]</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Global Rankings -->
+          <div class="mt-12">
+            <h3 class="font-canela text-2xl font-semibold text-gray-900 mb-8">Global Ecosystem Rankings</h3>
+
+            <div class="bg-white rounded-xl p-8 border border-gray-200">
+              <div class="grid lg:grid-cols-3 gap-8">
+                <div class="text-center">
+                  <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-globe text-2xl text-blue-600"></i>
+                  </div>
+                  <div class="text-3xl font-bold text-blue-600 mb-2">#20</div>
+                  <div class="text-gray-700 mb-2">Global Emerging Startup Ecosystem (2023)</div>
+                  <div class="text-sm text-gray-600">Rising from previous rankings</div>
+                  <a class="citation-link text-xs" href="https://www.callaghaninnovation.govt.nz/assets/documents/Callaghan-Innovation-Annual-Report-2023-24.pdf">[30]</a>
+                </div>
+
+                <div class="text-center">
+                  <div class="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-chart-line text-2xl text-green-600"></i>
+                  </div>
+                  <div class="text-3xl font-bold text-green-600 mb-2">-1</div>
+                  <div class="text-gray-700 mb-2">Global Startup Ecosystem Index Change (2025)</div>
+                  <div class="text-sm text-gray-600">Slight decline, maintaining strong position</div>
+                  <a class="citation-link text-xs" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                </div>
+
+                <div class="text-center">
+                  <div class="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-rocket text-2xl text-purple-600"></i>
+                  </div>
+                  <div class="text-3xl font-bold text-purple-600 mb-2">Multiple</div>
+                  <div class="text-gray-700 mb-2">Sector-Specific Rankings</div>
+                  <div class="text-sm text-gray-600">Strong positions in key technology sectors</div>
+                  <a class="citation-link text-xs" href="https://www.startupblink.com/startup-ecosystem/new-zealand">[24]</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visual Summary -->
+      <section class="py-16 px-8" id="visual-summary">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-canela text-4xl font-bold text-gray-900 mb-12">Visual Summary: Key Metrics 2023-2025</h2>
+
+          <!-- Key Metrics Table -->
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden mb-12">
+            <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+              <h3 class="font-canela text-xl font-semibold text-gray-900">Comprehensive Metrics Overview</h3>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Metric</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value / Status (2023-2025)</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Source(s)</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Active Startups</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Approx. 2,400</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Total Investment (2024)</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Over NZD 2 billion</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Pre-Seed Funding (2025)</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Over NZD 100 million</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <a class="citation-link" href="https://www.papermark.com/blog/pre-seed-investors-new-zealand">[8]</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">R&amp;D Intensity (NZ)</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1.47% of GDP</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <a class="citation-link" href="https://www.globalassetsolutions.com/australia-vs-new-zealand">[26]</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">R&amp;D Intensity (OECD)</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2.7% of GDP</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <a class="citation-link" href="https://www.globalassetsolutions.com/australia-vs-new-zealand">[26]</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Jobs Created (2023)</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Over 40,000</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- R&amp;D Intensity Comparison -->
+          <div class="grid lg:grid-cols-2 gap-12 mb-12">
+            <div class="bg-white rounded-xl border border-gray-200 p-8">
+              <h3 class="font-canela text-xl font-semibold text-gray-900 mb-6">R&amp;D Intensity Gap Analysis</h3>
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid" id="mermaid-1">
+                  graph LR
+                  A[&#34;New Zealand
+                  <br/>1.47%&#34;] --&gt;|&#34;1.23% Gap&#34;| B[&#34;OECD Average
+                  <br/>2.7%&#34;]
+                  B --&gt;|&#34;0.3%+ Gap&#34;| C[&#34;Leading Nations
+                  <br/>3%+&#34;]
+
+                  style A fill:#dc2626,stroke:#991b1b,stroke-width:3px,color:#fff
+                  style B fill:#ea580c,stroke:#c2410c,stroke-width:2px,color:#fff
+                  style C fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+                </div>
+              </div>
+              <p class="text-gray-600 text-sm mt-4">
+                New Zealand&#39;s R&amp;D investment significantly trails OECD average and leading innovative nations.
+                <a class="citation-link" href="https://www.globalassetsolutions.com/australia-vs-new-zealand">[26]</a>
+              </p>
+            </div>
+
+            <!-- Ecosystem Flow Diagram -->
+            <div class="bg-white rounded-xl border border-gray-200 p-8">
+              <h3 class="font-canela text-xl font-semibold text-gray-900 mb-6">Ecosystem Flow: Strengths to Challenges</h3>
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid" id="mermaid-2">
+                  graph TD
+                  A[&#34;Strong Sectors
+                  <br/>AI, Agritech, SaaS&#34;] --&gt; B[&#34;Current Success
+                  <br/>2,400 Startups, NZD 2B+ Investment&#34;]
+                  B --&gt; C[&#34;Key Challenges
+                  <br/>R&amp;D Gap, Funding Gap, Talent Shortage&#34;]
+                  C --&gt; D[&#34;Emerging Initiatives
+                  <br/>AI Strategy, Regional Deals&#34;]
+
+                  style A fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+                  style B fill:#2563eb,stroke:#1d4ed8,stroke-width:3px,color:#fff
+                  style C fill:#dc2626,stroke:#991b1b,stroke-width:3px,color:#fff
+                  style D fill:#7c3aed,stroke:#6d28d9,stroke-width:3px,color:#fff
+                </div>
+              </div>
+              <p class="text-gray-600 text-sm mt-4">
+                Mapping the ecosystem&#39;s current strengths through challenges to emerging solution initiatives.
+              </p>
+            </div>
+          </div>
+
+          <!-- Innovation Hub Distribution -->
+          <div class="bg-white rounded-xl border border-gray-200 p-8">
+            <h3 class="font-canela text-xl font-semibold text-gray-900 mb-6">Geographic Innovation Hub Distribution</h3>
+            <div class="mermaid-container">
+              <div class="mermaid-controls">
+                <button class="mermaid-control-btn zoom-in" title="放大">
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="mermaid-control-btn zoom-out" title="缩小">
+                  <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="mermaid-control-btn reset-zoom" title="重置">
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+                <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              <div class="mermaid" id="mermaid-3">
+                graph TD
+                A[&#34;New Zealand Innovation Hubs&#34;] --&gt; B[&#34;Auckland - 58%&#34;]
+                A --&gt; C[&#34;Wellington - Key Node&#34;]
+                A --&gt; D[&#34;Christchurch - Key Node&#34;]
+                A --&gt; E[&#34;Regional Deals Areas&#34;]
+                E --&gt; F[&#34;Western Bay of Plenty&#34;]
+                E --&gt; G[&#34;Otago/Central Lakes&#34;]
+
+                style A fill:#1e40af,stroke:#1e3a8a,stroke-width:3px,color:#fff
+                style B fill:#dc2626,stroke:#991b1b,stroke-width:3px,color:#fff
+                style C fill:#ea580c,stroke:#c2410c,stroke-width:2px,color:#fff
+                style D fill:#ea580c,stroke:#c2410c,stroke-width:2px,color:#fff
+                style E fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+                style F fill:#059669,stroke:#047857,stroke-width:2px,color:#fff
+                style G fill:#059669,stroke:#047857,stroke-width:2px,color:#fff
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm mt-4">
+              Auckland dominates with 58% of startup operations, while Wellington and Christchurch serve as key secondary nodes.
+              <a class="citation-link" href="https://www.nucamp.co/blog/coding-bootcamp-new-zealand-nzl-new-zealands-top-10-startups-that-tech-professionals-should-watch-out-for-in-2025">[1]</a>
+              <a class="citation-link" href="https://startupgenome.com/contents/report/gser-2025_4786.pdf">[2]</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section class="py-16 px-8 bg-gradient-to-r from-blue-900 to-green-900 text-white" id="conclusion">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-canela text-4xl font-bold mb-8">Strategic Outlook: Navigating the Future</h2>
+
+          <div class="grid lg:grid-cols-2 gap-12">
+            <div>
+              <h3 class="font-canela text-2xl font-semibold mb-6">Current Position</h3>
+              <p class="text-blue-100 leading-relaxed mb-6">
+                New Zealand&#39;s innovation ecosystem in 2025 demonstrates significant strength in AI, Agritech, SaaS, Fintech, and Healthtech sectors, supported by growing public and private investment networks. The ecosystem has proven its economic contribution through <strong>40,000+ new jobs in 2023</strong> and <strong>NZD 2B+ invested in 2024</strong>.
+              </p>
+
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 mb-6">
+                <h4 class="font-semibold mb-3">Key Strengths</h4>
+                <ul class="space-y-2 text-blue-100 text-sm">
+                  <li>• Strong sector specialization in high-growth areas</li>
+                  <li>• Increasing venture capital participation (58% of deals)</li>
+                  <li>• High AI adoption rate (67% of companies)</li>
+                  <li>• Significant multiplier effect (4.8 jobs per tech job)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="font-canela text-2xl font-semibold mb-6">Critical Challenges</h3>
+              <p class="text-green-100 leading-relaxed mb-6">
+                However, persistent barriers threaten long-term competitiveness: <strong>R&amp;D underinvestment at 1.47% of GDP</strong> (vs OECD 2.7%), <strong>Series A/B funding gaps</strong> hindering scale-up, and <strong>talent shortages</strong> exacerbated by brain drain.
+              </p>
+
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 mb-6">
+                <h4 class="font-semibold mb-3">Strategic Response</h4>
+                <ul class="space-y-2 text-green-100 text-sm">
+                  <li>• National AI Strategy 2025 provides coordinated framework</li>
+                  <li>• City and Regional Deals enable place-based innovation</li>
+                  <li>• Continued Elevate Fund investment in domestic VCs</li>
+                  <li>• Science system restructuring for better R&amp;D alignment</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12 text-center">
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+              <h3 class="font-canela text-2xl font-bold mb-4">Path Forward</h3>
+              <p class="text-lg leading-relaxed text-blue-100 mb-6">
+                By proactively addressing R&amp;D investment gaps, funding access challenges, and talent shortages while capitalizing on emerging opportunities through the National AI Strategy and Regional Deals, New Zealand can position innovation as a primary driver of economic prosperity and global competitiveness.
+              </p>
+              <p class="text-base text-green-100">
+                Success depends on fostering risk-embracing culture, strategic investment in research and talent, and building robust pathways for scaling innovative ventures globally.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="py-8 px-8 bg-gray-900 text-gray-300">
+        <div class="max-w-6xl mx-auto text-center">
+          <p class="text-sm">
+            New Zealand Innovation Ecosystem Analysis 2023-2025 |
+            <span class="text-gray-400">Data sources cited throughout document</span>
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+        // Initialize Mermaid with custom config
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#1e40af',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#1e3a8a',
+                lineColor: '#6b7280',
+                secondaryColor: '#059669',
+                tertiaryColor: '#dc2626',
+                background: '#ffffff',
+                mainBkg: '#1e40af',
+                secondBkg: '#059669',
+                tertiaryBkg: '#dc2626',
+                quaternaryBkg: '#ea580c',
+                primaryTextColor: '#ffffff',
+                secondaryTextColor: '#ffffff',
+                tertiaryTextColor: '#ffffff',
+                textColor: '#1f2937',
+                fontSize: '14px',
+                fontFamily: 'Inter, sans-serif'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            sequence: {
+                useMaxWidth: false,
+                wrap: true
+            },
+            gantt: {
+                useMaxWidth: false
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize controls after mermaid renders
+        setTimeout(initializeMermaidControls, 1000);
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            const toc = document.getElementById('toc');
+            toc.classList.toggle('open');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                const toc = document.getElementById('toc');
+                toc.classList.remove('open');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const toc = document.getElementById('toc');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            
+            if (!toc.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                toc.classList.remove('open');
+            }
+        });
+
+        // Highlight active section in TOC
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#toc a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-blue-600', 'font-semibold');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('text-blue-600', 'font-semibold');
+                }
+            });
+        });
+    </script>
+
+  
+
+</body></html>
