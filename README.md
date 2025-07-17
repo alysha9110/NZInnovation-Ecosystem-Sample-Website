@@ -1,6 +1,6 @@
 # New Zealand Innovation Ecosystem Analysis
 
-**[→ View the live site](https://alysha9110.github.io/nz-innovation-ecosystem/)**
+**[→ View the live site](https://alysha9110.github.io/NZInnovation-Ecosystem-Sample-Website/)**
 
 An interactive exploration of New Zealand's innovation landscape, built to demonstrate how AI can accelerate research synthesis and presentation.
 
