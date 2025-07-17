@@ -1,5 +1,7 @@
 # New Zealand Innovation Ecosystem Analysis
 
+**[→ View the live site](https://alysha9110.github.io/nz-innovation-ecosystem/)**
+
 An interactive exploration of New Zealand's innovation landscape, built to demonstrate how AI can accelerate research synthesis and presentation.
 
 ## What This Shows
@@ -22,5 +24,3 @@ I took a 15-page static report and transformed it into an engaging, navigable we
 In venture capital, speed and clarity are everything. This project shows I can quickly synthesise complex information, present it clearly, and deliver results fast without sacrificing quality.
 
 The blend of AI efficiency and human judgement reflects how I approach problem-solving: leverage technology to work faster, but always apply critical thinking to ensure the output serves its purpose.
-
-[View the live site →](https://alysha9110.github.io/nz-innovation-ecosystem/)
